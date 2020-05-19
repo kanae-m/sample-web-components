@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>sync attr</title>
+</head>
+<body>
+  <sync-attr></sync-attr>
+  <script>
+    class SyncAttrElement extends HTMLElement {
+      static get observedAttributes() {
+        return ['attr'];
+      }
+
+      get attr() {
+        return this.getAttribute('attr');
+      }
+
+      set attr(val) {
+        if (val) {
+          this.setAttribute('attr', val);
+        } else {
+          this.removeAttribute('attr');
+        }
+      }
+
+      constructor() {
+        super();
+        this.render('Hi!');
+      }
+
+      attributeChangedCallback(attrName, oldVal, newVal) {
+        this.render(newVal);
+      }
+
+      render(innerText) {
+        this.innerHTML = `<p>${innerText}</p>`
+      }
+    }
+    window.customElements.define('sync-attr', SyncAttrElement);
+  </script>
+</body>
+</html>

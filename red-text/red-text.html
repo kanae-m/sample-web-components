@@ -15,18 +15,18 @@
     class RedText extends HTMLElement {
       constructor() {
         super();
+        const shadowRoot = this.attachShadow({ mode: 'open' });
 
-        // styleタグを定義しCSSを追加
         const style = document.createElement('style');
         style.innerText= `p { color: red; }`;
 
-        // 要素にstyleタグを追加
-        this.appendChild(style);
+        // shadowRootにstyleタグを追加するよう変更
+        shadowRoot.appendChild(style);
 
         const text = document.createElement('p');
         text.innerText = 'I am RED!';
 
-        this.appendChild(text);
+        shadowRoot.appendChild(text);
       }
     }
     window.customElements.define('red-text', RedText);

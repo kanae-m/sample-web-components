@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+</head>
+<body>
+  <script>
+    class HelloWorld extends HTMLElement {
+      get hoge() {
+        return this.getAttribute('hoge');
+      }
+
+      set hoge(val) {
+        if (val) {
+          this.setAttribute('hoge', val);
+        } else {
+          this.removeAttribute('hoge');
+        }
+      }
+    }
+    //windows.customElements.defineでCustom Elementを定義する
+    window.customElements.define('hello-world', HelloWorld);
+    document.body.appendChild(new HelloWorld());
+  </script>
+</body>
+</html>
